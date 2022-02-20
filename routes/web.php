@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\EpisodesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +22,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/articles/{article:slug}', ArticlesController::class);
+Route::get('/episodes/{episode:slug}', EpisodesController::class);
 
 require __DIR__.'/auth.php';
