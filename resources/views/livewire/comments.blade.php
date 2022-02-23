@@ -6,39 +6,11 @@
             </div>
             <div class="px-4 py-6 sm:px-6">
                 <div class="space-y-8">
-                    {{-- Start comment --}}
-                    <div>
-                        <div class="flex">
-                            <div class="flex-shrink-0 mr-4">
-                                <img class="h-10 w-10 rounded-full" src="" alt="">
-                            </div>
-                            <div class="flex-grow">
-                                <div>
-                                    <a href="#" class="font-medium text-gray-900">User name</a>
-                                </div>
-                                <div class="mt-1 flex-grow w-full">
-                                    <p class="text-gray-700">Comment body</p>
-                                </div>
-                                <div class="mt-2 space-x-2">
-                                    <span class="text-gray-500 font-medium">Created at date</span>
-                                    <button type="button" class="text-gray-900 font-medium">
-                                        Reply
-                                    </button>
-                                    <button type="button" class="text-gray-900 font-medium">
-                                        Edit
-                                    </button>
-                                    <button type="button" class="text-gray-900 font-medium">
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="ml-14 mt-6">
-                            Replies
-                        </div>
-                    </div>
-                    {{-- End comment --}}
+                    @forelse($comments as $comment)
+                        <livewire:comment :comment="$comment" :key="$comment->id"/>
+                    @empty
+                        <p>No comments yet.</p>
+                    @endforelse
                 </div>
             </div>
         </div>
