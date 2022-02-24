@@ -14,9 +14,11 @@
                 <span class="text-gray-500 font-medium">
                     {{ $comment->created_at->diffForHumans() }}
                 </span>
-                <button type="button" class="text-gray-900 font-medium">
-                    Reply
-                </button>
+                @if (! $comment->parent_id)
+                    <button type="button" class="text-gray-900 font-medium">
+                        Reply
+                    </button>
+                @endif
                 <button type="button" class="text-gray-900 font-medium">
                     Edit
                 </button>
@@ -28,6 +30,8 @@
     </div>
 
     <div class="ml-14 mt-6">
-        Replies
+        @foreach ($comment->children as $child)
+            <livewire:comment :comment="$child" :key="$child->id"/>
+        @endforeach
     </div>
 </div>
