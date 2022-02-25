@@ -14,9 +14,27 @@ class Comment extends Component
         'body' => ''
     ];
 
+    protected $validationAttributes = [
+        'replyState.body' => 'reply'
+    ];
+
     public function postReply()
     {
-        dd($this->replyState);
+        $this->validate([
+            'replyState.body' => 'required'
+        ]);
+
+        $reply = $this->comment->children()->make($this->replyState);
+        $reply->user()->associate(auth()->user());
+        $reply->commentable()->associate($this->comment->commentable);
+
+        $reply->save();
+
+        $this->replyState = [
+            'body' => ''
+        ];
+
+        $this->isReplying = false;
     }
 
     public function render()

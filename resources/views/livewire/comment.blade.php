@@ -33,7 +33,7 @@
 
     <div class="ml-14 mt-6">
         @if ($isReplying)
-            <form wire:submit.prevent="postReply">
+            <form wire:submit.prevent="postReply" class="my-4">
                 <div>
                     <label for="comment" class="sr-only">Reply body</label>
                     <textarea id="comment" name="comment" rows="3"
