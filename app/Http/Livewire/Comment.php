@@ -14,6 +14,12 @@ class Comment extends Component
         'body' => ''
     ];
 
+    public $isEditing = false;
+
+    public $editState = [
+        'body' => ''
+    ];
+
     protected $listeners = [
         'refresh' => '$refresh'
     ];
@@ -21,6 +27,17 @@ class Comment extends Component
     protected $validationAttributes = [
         'replyState.body' => 'reply'
     ];
+
+    public function updatedIsEditing($isEditing)
+    {
+        if (! $isEditing) {
+            return;
+        }
+        
+        $this->editState = [
+            'body' => $this->comment->body
+        ];
+    }
 
     public function postReply()
     {
