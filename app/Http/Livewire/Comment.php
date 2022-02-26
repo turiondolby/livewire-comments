@@ -45,6 +45,10 @@ class Comment extends Component
     public function editComment()
     {
         $this->authorize('update', $this->comment);
+
+        $this->comment->update($this->editState);
+
+        $this->isEditing = false;
     }
 
     public function postReply()
