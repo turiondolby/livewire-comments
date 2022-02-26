@@ -33,7 +33,12 @@ class Comments extends Component
 
     public function render()
     {
-        $comments = $this->model->comments()->parent()->latest()->get();
+        $comments = $this->model
+            ->comments()
+            ->with('user', 'children.user', 'children.children')
+            ->parent()
+            ->latest()
+            ->get();
 
         return view('livewire.comments', [
             'comments' => $comments
