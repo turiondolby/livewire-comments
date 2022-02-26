@@ -9,7 +9,7 @@
             </div>
             <div class="mt-1 flex-grow w-full">
                 @if ($isEditing)
-                    <form>
+                    <form wire:submit.prevent="editComment">
                         <div>
                             <label for="comment" class="sr-only">Comment body</label>
                             <textarea id="comment" name="comment" rows="3"
@@ -41,9 +41,13 @@
                             Reply
                         </button>
                     @endif
-                    <button wire:click="$toggle('isEditing')" type="button" class="text-gray-900 font-medium">
-                        Edit
-                    </button>
+
+                    @can ('update', $comment)
+                        <button wire:click="$toggle('isEditing')" type="button" class="text-gray-900 font-medium">
+                            Edit
+                        </button>
+                    @endcan
+
                     <button type="button" class="text-gray-900 font-medium">
                         Delete
                     </button>

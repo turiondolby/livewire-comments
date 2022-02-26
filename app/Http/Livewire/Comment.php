@@ -3,9 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Comment extends Component
 {
+    use AuthorizesRequests;
+
     public $comment;
 
     public $isReplying = false;
@@ -33,10 +36,15 @@ class Comment extends Component
         if (! $isEditing) {
             return;
         }
-        
+
         $this->editState = [
             'body' => $this->comment->body
         ];
+    }
+
+    public function editComment()
+    {
+        $this->authorize('update', $this->comment);
     }
 
     public function postReply()
