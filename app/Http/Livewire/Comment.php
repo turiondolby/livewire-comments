@@ -14,6 +14,10 @@ class Comment extends Component
         'body' => ''
     ];
 
+    protected $listeners = [
+        'refresh' => '$refresh'
+    ];
+
     protected $validationAttributes = [
         'replyState.body' => 'reply'
     ];
@@ -35,6 +39,8 @@ class Comment extends Component
         ];
 
         $this->isReplying = false;
+
+        $this->emitSelf('refresh');
     }
 
     public function render()
