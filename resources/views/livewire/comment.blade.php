@@ -48,7 +48,17 @@
                         </button>
                     @endcan
 
-                    <button type="button" class="text-gray-900 font-medium">
+                    <button x-data="{
+                        confirmCommentDeletion () {
+                            if (window.confirm('Are you sure you want to delete this comment?')) {
+                                console.log('delete');
+                            }
+                        }
+                    }"
+                        @click="confirmCommentDeletion"
+                        type="button"
+                        class="text-gray-900 font-medium"
+                    >
                         Delete
                     </button>
                 @endauth
