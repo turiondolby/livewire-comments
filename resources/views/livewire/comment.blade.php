@@ -28,12 +28,12 @@
                         </div>
                     </form>
                 @else
-                    <p class="text-gray-700">{!! $comment->markdownBody() !!}</p>
+                    <p class="text-gray-700">{!! $comment->presenter()->markdownBody() !!}</p>
                 @endif
             </div>
             <div class="mt-2 space-x-2">
                 <span class="text-gray-500 font-medium">
-                    {{ $comment->created_at->diffForHumans() }}
+                    {{ $comment->presenter()->relativeCreatedAt() }}
                 </span>
                 @auth
                     @if (! $comment->parent_id)

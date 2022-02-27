@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\Presenters\CommentPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
@@ -15,11 +15,9 @@ class Comment extends Model
         'body'
     ];
 
-    public function markdownBody()
+    public function presenter()
     {
-        return Str::of($this->body)->markdown([
-            'html_input' => 'strip',
-        ]);
+        return new CommentPresenter($this);
     }
 
     public function scopeParent(Builder $builder)
