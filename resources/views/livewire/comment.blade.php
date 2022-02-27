@@ -28,7 +28,7 @@
                         </div>
                     </form>
                 @else
-                    <p class="text-gray-700">{{ $comment->body }}</p>
+                    <p class="text-gray-700">{!! $comment->markdownBody() !!}</p>
                 @endif
             </div>
             <div class="mt-2 space-x-2">

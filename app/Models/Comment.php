@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,6 +14,13 @@ class Comment extends Model
     protected $fillable = [
         'body'
     ];
+
+    public function markdownBody()
+    {
+        return Str::of($this->body)->markdown([
+            'html_input' => 'strip',
+        ]);
+    }
 
     public function scopeParent(Builder $builder)
     {
