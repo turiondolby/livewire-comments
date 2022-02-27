@@ -62,6 +62,10 @@ class Comment extends Component
 
     public function postReply()
     {
+        if (! $this->comment->hasParent()) {
+            return;
+        }
+
         $this->validate([
             'replyState.body' => 'required'
         ]);

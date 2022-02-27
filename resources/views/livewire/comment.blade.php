@@ -36,7 +36,7 @@
                     {{ $comment->presenter()->relativeCreatedAt() }}
                 </span>
                 @auth
-                    @if (! $comment->parent_id)
+                    @if ($comment->hasParent())
                         <button wire:click="$toggle('isReplying')" type="button" class="text-gray-900 font-medium">
                             Reply
                         </button>

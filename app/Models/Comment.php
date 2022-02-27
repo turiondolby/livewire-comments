@@ -21,6 +21,11 @@ class Comment extends Model
         return new CommentPresenter($this);
     }
 
+    public function hasParent()
+    {
+        return is_null($this->parent_id);
+    }
+
     public function scopeParent(Builder $builder)
     {
         $builder->whereNull('parent_id');
