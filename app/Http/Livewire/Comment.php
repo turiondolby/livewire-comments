@@ -51,6 +51,15 @@ class Comment extends Component
         $this->isEditing = false;
     }
 
+    public function deleteComment()
+    {
+        $this->authorize('destroy', $this->comment);
+
+        $this->comment->delete();
+
+        $this->emitUp('refresh');
+    }
+
     public function postReply()
     {
         $this->validate([

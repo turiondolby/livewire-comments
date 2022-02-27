@@ -48,19 +48,21 @@
                         </button>
                     @endcan
 
-                    <button x-data="{
-                        confirmCommentDeletion () {
-                            if (window.confirm('Are you sure you want to delete this comment?')) {
-                                console.log('delete');
+                    @can ('destroy', $comment)
+                        <button x-data="{
+                            confirmCommentDeletion () {
+                                if (window.confirm('Are you sure you want to delete this comment?')) {
+                                    @this.call('deleteComment');
+                                }
                             }
-                        }
-                    }"
-                        @click="confirmCommentDeletion"
-                        type="button"
-                        class="text-gray-900 font-medium"
-                    >
-                        Delete
-                    </button>
+                        }"
+                            @click="confirmCommentDeletion"
+                            type="button"
+                            class="text-gray-900 font-medium"
+                        >
+                            Delete
+                        </button>
+                    @endcan
                 @endauth
             </div>
         </div>

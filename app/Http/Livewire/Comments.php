@@ -16,6 +16,10 @@ class Comments extends Component
         'newCommentState.body' => 'comment'
     ];
 
+    protected $listeners = [
+        'refresh' => '$refresh'
+    ];
+
     public function postComment()
     {
         $this->validate([
