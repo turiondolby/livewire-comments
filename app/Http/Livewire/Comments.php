@@ -3,9 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Comments extends Component
 {
+    use WithPagination;
+
     public $model;
 
     public $newCommentState = [
@@ -33,6 +36,8 @@ class Comments extends Component
         $this->newCommentState = [
             'body' => ''
         ];
+
+        $this->resetPage();
     }
 
     public function render()
@@ -42,7 +47,7 @@ class Comments extends Component
             ->with('user', 'children.user', 'children.children')
             ->parent()
             ->latest()
-            ->get();
+            ->paginate(3);
 
         return view('livewire.comments', [
             'comments' => $comments

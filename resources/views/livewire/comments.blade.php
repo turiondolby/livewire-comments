@@ -6,11 +6,14 @@
             </div>
             <div class="px-4 py-6 sm:px-6">
                 <div class="space-y-8">
-                    @forelse($comments as $comment)
-                        <livewire:comment :comment="$comment" :key="$comment->id"/>
-                    @empty
+                    @if ($comments->isNotEmpty())
+                        @foreach($comments as $comment)
+                            <livewire:comment :comment="$comment" :key="$comment->id"/>
+                        @endforeach
+                        {{ $comments->links() }}
+                    @else
                         <p>No comments yet.</p>
-                    @endforelse
+                    @endif
                 </div>
             </div>
         </div>
